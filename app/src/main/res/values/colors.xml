@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#6c6b6b</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="backgroundtext_card">#53292929</color>
+    <color name="colorBlueGrey">#e2e1e1</color>
+
+
+
+
+
+
+    <color name="list_item_title">@color/colorBlack</color>
+    <color name="list_background">@color/colorWhite</color>
+    <color name="list_background_pressed">@color/colorBlueGrey</color>
+    <color name="list_divider">@color/colorBlueGrey</color>
+    <color name="counter_text_bg">@color/colorAccent</color>
+    <color name="counter_text_color">@color/colorWhite</color>
+
+    <color name="list_row_start_color">#ffffff</color>
+    <color name="list_row_end_color">#ffffff</color>
+    <color name="list_row_hover_start_color">#ebeef0</color>
+    <color name="list_row_hover_end_color">#ebeef0</color>
+
+</resources>

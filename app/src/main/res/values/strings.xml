@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Plantilla</string>
+    <string name="title_activity_referencia">ReferenciaActivity</string>
+
+    <string-array name="nav_drawer_items">
+        <item>Crear Tienda</item>
+        <item>Backup de fotos</item>
+        <item>Registro de fotos</item>
+    </string-array>
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_menu_camera</item>
+        <item>@drawable/ic_menu_camera</item>
+        <item>@drawable/ic_menu_camera</item>
+
+    </array>
+    <string name="desc_list_item_icon">Item Icon</string>
+
+    <string name="hint_username">Nombre de usuario</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="text_button_login">INICIAR SESIÓN</string>
+
+    <string name="save">Guardar</string>
+    <string name="saveInformation">Está seguro desea Guardar</string>
+    <string name="saveError">No se pudo guardar la información intentelo nuevamente</string>
+    <string name="gpsMessage">Gps deshabilitado, por favor habilitar el gps, para localización</string>
+    <string name="saveSuccess">Se guardo correctamente los datos</string>
+    <string name="storeAuditFinish">Terminó el registro de la tienda</string>
+
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+
+    <string name="sw_si">SI</string>
+    <string name="sw_no">NO</string>
+
+    <!-- -->
+    <string name="dialog_message_permission">Para poder iniciar la aplicación necesita establecer los permisos</string>
+    <string name="permission_access">Se ha otorgado el permiso</string>
+    <string name="ok">OK</string>
+
+    <!-- Versiones-->
+    <string name="version">Versión</string>
+    <string name="log">Log</string>
+    <string name="developer">Developed by:</string>
+    <string name="mesaage_on_back">No se puede volver atras, los datos ya fueron guardado, para modificar póngase en contácto con el administrador</string>
+    <string name="text_loading">Cargando...</string>
+    <string name="message_no_save_data">No se pudo guardar la información intentelo nuevamente</string>
+    <string name="message_save">Guardar</string>
+    <string name="message_save_information">Está seguro de guardar </string>
+    <string name="message_login_error">No se pudo iniciar sessión</string>
+    <string name="message_login_success">Inicio de sesión correctamente</string>
+    <string name="message_select_options">Seleccione una opción</string>
+    <string name="text_requiere_commet">Ingresar el giro</string>
+    <string name="text_requiere_fullname">Ingresar Nombre o Razón Social</string>
+    <string name="text_requiere_address">Ingresar Dirección</string>
+    <string name="title_activity_cliente_perfecto">ClientePerfectoActivity</string>
+    <string name="message_create_store_finish">Termino el registro de la tienda</string>
+    <string name="message_gps_title">GPS configuración</string>
+    <string name="message_gps_information">El GPS no está habilitado. Ingrese a la configuración para habilitarlo</string>
+    <string name="message_gps_enabled_information">Habilite su GPS para continuar</string>
+    <string name="message_requiere_user">Ingrese un  nombre de usuario</string>
+    <string name="message_requiere_password">Ingrese el password</string>
+    <string name="title_activity_panel_admin">PanelAdminActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
