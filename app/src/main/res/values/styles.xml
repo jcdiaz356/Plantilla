@@ -6,8 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="button_style_r">@style/ButtonsAudit</item>
     </style>
-
+    <attr name="button_style_r" format="reference" />
     <!--<style name="AppTheme.NoActionBar">-->
     <!--<item name="windowActionBar">false</item>-->
     <!--<item name="windowNoTitle">true</item>-->
@@ -17,13 +18,40 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-
     <style name="RaisedButtonDark" parent="Theme.AppCompat.Light">
         <item name="colorButtonNormal">@color/colorPrimaryDark</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
         <item name="android:textColor">@android:color/white</item>
-
     </style>
+    <style name="ButtonCloseAudit" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/colorRed</item>
+        <item name="colorControlHighlight">@color/colorRedDark</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+    <style name="ButtonsAudit" parent="Widget.AppCompat.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/button_audit</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+    <!--<style name="ButtonsAudit" parent="Widget.AppCompat.Button">-->
+        <!--<item name="android:gravity">center_vertical|center_horizontal</item>-->
+        <!--<item name="android:textColor">#FFFFFFFF</item>-->
+        <!--<item name="android:shadowColor">#FF000000</item>-->
+        <!--<item name="android:layout_marginBottom">16dp</item>-->
+        <!--<item name="android:layout_marginTop">16dp</item>-->
+        <!--<item name="android:shadowDx">0</item>-->
+        <!--<item name="android:shadowDy">-1</item>-->
+        <!--<item name="android:shadowRadius">0.2</item>-->
+        <!--<item name="android:textSize">16dip</item>-->
+        <!--<item name="android:background">@drawable/button_audit</item>-->
+        <!--<item name="android:focusable">true</item>-->
+        <!--<item name="android:clickable">true</item>-->
+    <!--</style>-->
+
 
     <style name="EditTextWhite" parent="TextAppearance.AppCompat">
         <item name="android:textColorHint">@color/colorWhite</item>
@@ -45,6 +73,24 @@
 
     <style name="CircularProgress" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@color/colorWhite</item>
+    </style>
+
+    <style name="LinearProgress" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/colorWhite</item>
+    </style>
+
+    <style name="Etiquetas">
+        <item name="android:background">@drawable/side_nav_bar</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+
+    <style name="Widget.CardContent" parent="android:Widget">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
 </resources>

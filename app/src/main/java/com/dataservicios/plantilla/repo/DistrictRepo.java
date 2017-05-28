@@ -107,16 +107,7 @@ public class DistrictRepo implements Crud {
         return wishList;
     }
 
-    public List<District> findByForDepartamentId(int departament_id) {
 
-        List<District> wishList = null;
-        try {
-            wishList = helper.getDistrictDao().queryBuilder().where().eq("departament_id",departament_id).query();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return wishList;
-    }
 
 
     @Override
@@ -135,5 +126,15 @@ public class DistrictRepo implements Crud {
     }
 
 
+    public List<District> findByForDepartamentId(int departament_id) {
+
+        List<District> wishList = null;
+        try {
+            wishList = helper.getDistrictDao().queryBuilder().where().eq("departament_id",departament_id).query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
 
 }

@@ -7,8 +7,15 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
+import com.dataservicios.plantilla.model.Audit;
+import com.dataservicios.plantilla.model.AuditRoadStore;
+import com.dataservicios.plantilla.model.Company;
 import com.dataservicios.plantilla.model.Departament;
 import com.dataservicios.plantilla.model.District;
+import com.dataservicios.plantilla.model.Poll;
+import com.dataservicios.plantilla.model.PollOption;
+import com.dataservicios.plantilla.model.Route;
+import com.dataservicios.plantilla.model.Store;
 import com.dataservicios.plantilla.model.User;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
@@ -27,17 +34,21 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String LOG_TAG = DatabaseHelper.class.getSimpleName();
 	// name of the database file for your application -- change to something appropriate for your app
 	private static final String DATABASE_NAME = "db_prueba";
-
 	// any time you make changes to your database objects, you may have to increase the database version
-	private static final int DATABASE_VERSION = 2;
-
+	private static final int DATABASE_VERSION = 18;
     private Context myContext;
 	// the DAO object we use to access the SimpleData table
     //pressure
-
 	private Dao<User, Integer> UserDao = null;
 	private Dao<Departament, Integer> DepartamentDao = null;
 	private Dao<District, Integer> DistrictDao = null;
+	private Dao<Route, Integer> RouteDao = null;
+	private Dao<Company, Integer> CompanyDao = null;
+	private Dao<Store, Integer> StoreDao = null;
+	private Dao<Audit, Integer> AuditDao = null;
+	private Dao<AuditRoadStore, Integer> AuditRoadStoreDao = null;
+	private Dao<Poll, Integer> PollDao = null;
+	private Dao<PollOption, Integer> PollOptionDao = null;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -51,6 +62,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, User.class);
 			TableUtils.createTable(connectionSource, Departament.class);
 			TableUtils.createTable(connectionSource, District.class);
+			TableUtils.createTable(connectionSource, Route.class);
+			TableUtils.createTable(connectionSource, Company.class);
+			TableUtils.createTable(connectionSource, Store.class);
+			TableUtils.createTable(connectionSource, Audit.class);
+			TableUtils.createTable(connectionSource, AuditRoadStore.class);
+			TableUtils.createTable(connectionSource, Poll.class);
+			TableUtils.createTable(connectionSource, PollOption.class);
 
             Log.i(LOG_TAG, "execute method onCreate: Can't create Tables");
 
@@ -85,6 +103,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource,User.class,true);
             TableUtils.dropTable(connectionSource, Departament.class,true);
             TableUtils.dropTable(connectionSource, District.class,true);
+            TableUtils.dropTable(connectionSource, Route.class,true);
+            TableUtils.dropTable(connectionSource, Company.class,true);
+            TableUtils.dropTable(connectionSource, Store.class,true);
+            TableUtils.dropTable(connectionSource, Audit.class,true);
+            TableUtils.dropTable(connectionSource, AuditRoadStore.class,true);
+            TableUtils.dropTable(connectionSource, Poll.class,true);
+            TableUtils.dropTable(connectionSource, PollOption.class,true);
             onCreate(db,connectionSource);
 
             Log.i(LOG_TAG, "execute method onUpgrade: drop Tables");
@@ -132,7 +157,81 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return DistrictDao;
     }
 
+    public Dao<Route, Integer> getRouteDao() {
+        if (null == RouteDao) {
+            try {
+                RouteDao = getDao(Route.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return RouteDao;
+    }
 
+    public Dao<Company, Integer> getCompanyDao() {
+        if (null == CompanyDao) {
+            try {
+                CompanyDao = getDao(Company.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return CompanyDao;
+    }
+
+    public Dao<Store, Integer> getStoreDao() {
+        if (null == StoreDao) {
+            try {
+                StoreDao = getDao(Store.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return StoreDao;
+    }
+
+    public Dao<Audit, Integer> getAuditDao() {
+        if (null == AuditDao) {
+            try {
+                AuditDao = getDao(Audit.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return AuditDao;
+    }
+
+    public Dao<AuditRoadStore, Integer> getAuditRoadStoreDao() {
+        if (null == AuditRoadStoreDao) {
+            try {
+                AuditRoadStoreDao = getDao(AuditRoadStore.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return AuditRoadStoreDao;
+    }
+    public Dao<Poll, Integer> getPollDao() {
+        if (null == PollDao) {
+            try {
+                PollDao = getDao(Poll.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return PollDao;
+    }
+
+    public Dao<PollOption, Integer> getPollOptionDao() {
+        if (null == PollOptionDao) {
+            try {
+                PollOptionDao = getDao(PollOption.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return PollOptionDao;
+    }
 
     private void preloadData(SQLiteDatabase db, Context context) {
 

@@ -1,7 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="textsize_min">14sp</dimen>
-
+    <dimen name="padding_text">4dp</dimen>
     <dimen name="padding_horizontal_login">32dp</dimen>
     <dimen name="edittext_textsize_login">20sp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->

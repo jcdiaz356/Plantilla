@@ -14,6 +14,10 @@
     <string name="saveSuccess">Se guardo correctamente los datos</string>
     <string name="storeAuditFinish">Terminó el registro de la tienda</string>
 
+    <!--Menu panel admin-->
+    <string name="menu_text_about">Acerca de</string>
+    <string name="menu_text_exit">Salir</string>
+
     <string name="yes">Si</string>
     <string name="no">No</string>
 
@@ -47,5 +51,39 @@
     <string name="message_gps_enabled_information">Habilite su GPS para continuar</string>
     <string name="message_requiere_user">Ingrese un  nombre de usuario</string>
     <string name="message_requiere_password">Ingrese el password</string>
+    <string name="text_total_stores">Tiendas: </string>
+    <string name="message_no_found">No se encontraron registros</string>
+    <string name="text_audits">Auditados: </string>
+    <string name="title_activity_Stores">Tiendas</string>
+    <string name="text_save_password">Guardar contraseña</string>
+    <string name="text_close_application">Cerrar aplicación</string>
+    <string name="text_title_close_sesion">Cerrar sesión</string>
+    <string name="message_close_sesion">Está seguro que desea cerrar sesión ?</string>
+    <string name="message_close_app">Esta seguro que desea cerrar la aplicación</string>
+    <string name="text_load_compnies">Cargando campaña</string>
+    <string name="title_activity_Stores_Audit">Auditar Tienda</string>
+    <string name="text_id_store">ID Tienda</string>
+    <string name="text_address">Direccion:</string>
+    <string name="text_reference">Referencia:</string>
+    <string name="text_district">Distrito:</string>
+    <string name="text_load_route">Cargando rutas de auditor</string>
+    <string name="text_load_stores">Cargando tiendas</string>
+    <string name="text_download_init">Inicio de descarga</string>
+    <string name="text_download_routes">Descargando rutas</string>
+    <string name="text_download_store">Descargando tiendas</string>
+    <string name="text_download_companies">Descargando campaña</string>
+    <string name="text_download_audits">Descargando auditorias</string>
+    <string name="message_no_get_audit">No se pudo obtener auditorias</string>
+    <string name="text_download_terminate">Descarga terminada</string>
+    <string name="text_configure">Configuración</string>
+    <string name="text_cancel">Cancelar</string>
+    <string name="message_update_gps">Actualizar Georeferencia</string>
+    <string name="message_update_gps_information">Está seguro de actualizar la georeferencia</string>
+    <string name="text_info_route">Informaciòn de ruta</string>
+    <string name="text_info_store">Informaciòn de tienda</string>
+    <string name="text_info_audits">Auditorias</string>
+    <string name="text_download_polls">Descargando preguntas</string>
+    <string name="text_download_polls_otpions">Descargando opcopnes de pregunta</string>
+    <string name="menu_search">Busacar</string>
 
 </resources>

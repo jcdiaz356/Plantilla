@@ -3,19 +3,24 @@
     <string name="title_activity_referencia">ReferenciaActivity</string>
 
     <string-array name="nav_drawer_items">
-        <item>Crear Tienda</item>
+        <item>Rutas</item>
         <item>Backup de fotos</item>
         <item>Registro de fotos</item>
+        <item>Sincronizar datos</item>
     </string-array>
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
-        <item>@drawable/ic_menu_camera</item>
-        <item>@drawable/ic_menu_camera</item>
-        <item>@drawable/ic_menu_camera</item>
-
+        <item>@drawable/ic_menu_route</item>
+        <item>@drawable/ic_menu_backup</item>
+        <item>@drawable/ic_menu_gallery</item>
+        <item>@drawable/ic_menu_sync</item>
     </array>
     <string name="desc_list_item_icon">Item Icon</string>
+
+    <!--Menu panel admin-->
+    <string name="menu_text_about">Acerca de</string>
+    <string name="menu_text_exit">Salir</string>
 
     <string name="hint_username">Nombre de usuario</string>
     <string name="hint_password">Contraseña</string>
@@ -70,4 +75,49 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_total_stores">Tiendas: </string>
+    <string name="text_audits">Auditados: </string>
+    <string name="text_id_route">ID Ruta: </string>
+    <string name="message_no_found">No se encontraron registros</string>
+    <string name="action_location">Ver mapa de rutas</string>
+    <string name="action_location_all">Ver mapa de toda las rutas</string>
+    <string name="title_activity_maps_route">Map</string>
+    <string name="message_app_no_initialize">No se puede inicializar la aplicación no se puede obtener datos</string>
+    <string name="title_activity_Stores">Tiendas</string>
+    <string name="text_save_password">Guardar contraseña</string>
+    <string name="text_close_application">Cerrar aplicación</string>
+    <string name="text_title_close_sesion">Cerrar sesión</string>
+    <string name="message_close_sesion">Desea cerrar sesión ?</string>
+    <string name="text_title_close_app">Cerrar aplicación</string>
+    <string name="message_close_app">Esta seguro que desea cerrar la aplicación</string>
+    <string name="text_load_compnies">Cargando campaña</string>
+    <string name="girl_ipsum">Morbi posuere lorem nec elit dapibus, vitae accumsan mauris pellentesque.         Vestibulum a lobortis mi. Vestibulum lacinia molestie semper. Pellentesque         ultrices arcu lacus, interdum mollis nibh convallis ut. Aliquam sagittis         sem a lacus gravida, eu accumsan purus volutpat. Donec tempus, est id         tristique consectetur, lacus ligula dignissim turpis, cursus commodo turpis         libero in purus. Phasellus tempus gravida tempor.</string>
+    <string name="title_activity_Stores_Audit">Auditar Tienda</string>
+    <string name="text_id_store">ID Tienda:</string>
+    <string name="text_address">Direccion:</string>
+    <string name="text_reference">Referencia:</string>
+    <string name="text_district">Distrito:</string>
+    <string name="text_load_route">Cargando rutas de auditor</string>
+    <string name="text_load_stores">Cargando tiendas</string>
+    <string name="text_download_init">Inicio de descarga</string>
+    <string name="text_download_routes">Descargando rutas</string>
+    <string name="text_download_store">Descargando tiendas</string>
+    <string name="text_download_companies">Descargando campaña</string>
+    <string name="text_download_audits">Descargando auditorias</string>
+    <string name="message_no_get_company">No se puedo obtener campaña</string>
+    <string name="message_no_get_audit">No se pudo obtener auditorias</string>
+    <string name="text_download_terminate">Descarga terminada</string>
+    <string name="text_configure">Configuración</string>
+    <string name="text_cancel">Cancelar</string>
+    <string name="message_update_gps">Actualizar Georeferencia</string>
+    <string name="message_update_gps_information">Está seguro de actualizar la georeferencia</string>
+    <string name="text_close_store">Cerrar Tienda</string>
+    <string name="text_info_route">Informaón de ruta</string>
+    <string name="text_info_store">Información de tienda</string>
+    <string name="text_info_audits">Auditorias</string>
+    <string name="text_download_polls">Descargando preguntas</string>
+    <string name="text_download_polls_otpions">Descargando opcopnes de pregunta</string>
+    <string name="menu_search">Busacar</string>
+
+
 </resources>

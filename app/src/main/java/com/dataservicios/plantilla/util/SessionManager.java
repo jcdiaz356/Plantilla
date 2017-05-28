@@ -13,33 +13,24 @@ import java.util.HashMap;
  * Created by usuario on 19/01/2015.
  */
 public class SessionManager {
-    // Preferencias compartidas
-    SharedPreferences pref;
-    //Editor de preferencias compartidas
-    SharedPreferences.Editor editor;
-    // Context
-    Context _context;
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+    private Context context;
     // Modo pref compartido
-    int PRIVATE_MODE = 0;
+    private int PRIVATE_MODE = 0;
 
-    // Sharedpref file name
     private static final String PREF_NAME = "AndroidHivePref";
-
-    // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
 
-    // User name (make variable public to access from outside)
     public static final String KEY_NAME = "name";
-
-    // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
-
     public static final String KEY_ID_USER = "id_user";
 
     // Constructor
     public SessionManager(Context context){
-        this._context = context;
-        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        this.context = context;
+        pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 
@@ -71,7 +62,7 @@ public class SessionManager {
         // Check login status
         if(!this.isLoggedIn()){
             // user is not logged in redirect him to Login Activity
-            Intent i = new Intent(_context, cls);
+            Intent i = new Intent(context, cls);
             // Closing all the Activities
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -79,7 +70,7 @@ public class SessionManager {
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             // Staring Login Activity
-            _context.startActivity(i);
+            context.startActivity(i);
         }
 
     }
@@ -110,18 +101,17 @@ public class SessionManager {
         // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();
-
         // After logout redirect user to Loing Activity
-        Intent i = new Intent(_context, cls);
+        Intent i = new Intent(context, cls);
         // Closing all the Activities
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
         // Add new Flag to start new Activity
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
         // Staring Login Activity
-        _context.startActivity(i);
+        context.startActivity(i);
     }
+
+
 
     /**
      * Quick check for login

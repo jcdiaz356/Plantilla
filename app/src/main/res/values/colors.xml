@@ -5,6 +5,8 @@
     <color name="colorAccent">#6c6b6b</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorRed">#ff0000</color>
+    <color name="colorRedDark">#aa0404</color>
     <color name="backgroundtext_card">#53292929</color>
     <color name="colorBlueGrey">#e2e1e1</color>
 

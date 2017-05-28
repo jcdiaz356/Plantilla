@@ -12,45 +12,64 @@ import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dataservicios.plantilla.db.DatabaseManager;
+import com.dataservicios.plantilla.model.Company;
+import com.dataservicios.plantilla.model.Route;
+import com.dataservicios.plantilla.model.Store;
 import com.dataservicios.plantilla.model.User;
+import com.dataservicios.plantilla.repo.CompanyRepo;
+import com.dataservicios.plantilla.repo.RouteRepo;
+import com.dataservicios.plantilla.repo.StoreRepo;
 import com.dataservicios.plantilla.repo.UserRepo;
 import com.dataservicios.plantilla.util.AuditUtil;
 import com.dataservicios.plantilla.util.SessionManager;
+import com.dataservicios.plantilla.util.SyncData;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private Button btLogin;
-    private TextInputEditText etUsuario,etPassword;
-    //private DatabaseHelper db;
-    private UserRepo userRepo ;
-    private ProgressDialog pDialog;
-    private Activity myActivity = (Activity) this;
-    private SessionManager session;
-    private String userLogin, passwordLogin, simSNLogin;
-
+    public static final String LOG_TAG = LoginActivity.class.getSimpleName();
+    private Button              btLogin;
+    private TextInputEditText   etUsuario,etPassword;
+    private CheckBox            ckSavePassword;
+    private UserRepo            userRepo ;
+    private ProgressDialog      pDialog;
+    private Activity            activity = (Activity) this;
+    private SessionManager      session;
+    private String              userLogin, passwordLogin, simSNLogin;
+    private int                 company_id;
+    private CompanyRepo         companyRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        btLogin = (Button) findViewById(R.id.btLogin);
-        etUsuario =   (TextInputEditText) findViewById(R.id.etUser);
-        etPassword = (TextInputEditText) findViewById(R.id.etPassword);
 
-        etPassword.setText("123456");
+        btLogin     = (Button) findViewById(R.id.btLogin);
+        etUsuario   = (TextInputEditText) findViewById(R.id.etUser);
+        etPassword  = (TextInputEditText) findViewById(R.id.etPassword);
+        ckSavePassword  = (CheckBox) findViewById(R.id.ckSavePassword);
 
+//        etUsuario.setText("jcdiaz356@hotmail.com");
+//        etPassword.setText("123456");
 
         session = new SessionManager(getApplicationContext());
 
-        DatabaseManager.init(myActivity);
-        userRepo = new UserRepo(myActivity);
+        DatabaseManager.init(activity);
+        userRepo = new UserRepo(activity);
+        companyRepo = new CompanyRepo(activity);
+
+        ArrayList<Company> companies = (ArrayList<Company>) companyRepo.findAll();
+        for(Company c:companies ){
+            company_id = c.getId();
+        }
 
         if( userRepo.findAll().size() > 0) {
             //User users = new User();
@@ -59,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                 User users = new User();
                 users=usersList.get(0);
                 etUsuario.setText(users.getEmail());
+                etPassword.setText(users.getPassword());
             }
         }
 
@@ -67,12 +87,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (etUsuario.getText().toString().trim().equals("") )
                 {
-                    Toast toast = Toast.makeText(myActivity, R.string.message_requiere_user , Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(activity, R.string.message_requiere_user , Toast.LENGTH_SHORT);
                     toast.show();
                     etUsuario.requestFocus();
                     return;
                 }else if (etPassword.getText().toString().trim().equals("")) {
-                    Toast toast = Toast.makeText(myActivity, R.string.message_requiere_password, Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(activity, R.string.message_requiere_password, Toast.LENGTH_SHORT);
                     toast.show();
                     etPassword.requestFocus();
                     return;
@@ -85,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                     simSNLogin = tm.getSimSerialNumber();
                     userLogin = etUsuario.getText().toString();
                     passwordLogin = etPassword.getText().toString();
-                    new AttemptLogin().execute();
+                    new loadLogin().execute();
                 }
             }
         });
@@ -93,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    class AttemptLogin extends AsyncTask<Void, String, User> {
+    class loadLogin extends AsyncTask<Void, Integer, User> {
 
         /**
          * Antes de comenzar en el hilo determinado, Mostrar progresión
@@ -114,8 +134,9 @@ public class LoginActivity extends AppCompatActivity {
         protected User doInBackground(Void... params) {
             // TODO Auto-generated method stub
 
-            User user = new User();
+            User user;
             user = AuditUtil.userLogin(userLogin, passwordLogin, simSNLogin);
+
             return user;
 
         }
@@ -126,24 +147,45 @@ public class LoginActivity extends AppCompatActivity {
             // dismiss the dialog once product deleted
 
             if( user.getId() == 0) {
-
-                Toast.makeText(myActivity, R.string.message_login_error, Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, R.string.message_login_error, Toast.LENGTH_LONG).show();
+                pDialog.dismiss();
             } else {
-
                 userRepo.deleteAll();
+                if (!ckSavePassword.isChecked()){
+                    user.setPassword("");
+                }
                 userRepo.create(user);
                 session.createLoginSession(user.getFullname().toString(), user.getEmail(), String.valueOf(user.getId()));
-                Intent i = new Intent(myActivity, PanelAdminActivity.class);
-                startActivity(i);
-                finish();
 
-                Toast.makeText(myActivity, R.string.message_login_success, Toast.LENGTH_LONG).show();
+                pDialog.dismiss();
+                AsyncTask syncData = new SyncData(activity, user.getId(), company_id, new SyncData.AsyncResponse() {
+                    @Override
+                    public void processFinish(Boolean output) {
+                         Intent i = new Intent(activity, PanelAdminActivity.class);
+                         startActivity(i);
+                         finish();
+                         Toast.makeText(activity, R.string.message_login_success, Toast.LENGTH_LONG).show();
+                    }
+                }).execute();
+
             }
-
-            pDialog.dismiss();
 
 
         }
 
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+
+            //super.onProgressUpdate(values);
+//            switch (values[10]) {
+//
+//
+//                case 10:
+//                    pDialog.setMessage(getString(R.string.text_load_route));
+//                case 20:
+//                    pDialog.setMessage(getString(R.string.text_load_stores));
+//            }
+        }
     }
 }

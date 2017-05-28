@@ -43,6 +43,14 @@ public class User {
         this.email = email;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getPassword() {
         return password;
     }
