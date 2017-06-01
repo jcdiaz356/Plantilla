@@ -117,7 +117,26 @@ public class CompanyRepo implements Crud {
         return items;
 
     }
+    @Override
+    public Object findFirstReg() {
 
-
+        Object wishList = null;
+        try {
+            wishList = helper.getCompanyDao().queryBuilder().queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
+    @Override
+    public long countReg() {
+        long count = 0;
+        try {
+            count = helper.getCompanyDao().countOf();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 
 }

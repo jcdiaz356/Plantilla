@@ -1,8 +1,6 @@
 package com.dataservicios.plantilla.model;
 
-import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 
 /**
  * Created by jcdia on 26/05/2017.
@@ -16,13 +14,15 @@ public class Poll {
     @DatabaseField
     private String  question;
     @DatabaseField
-    private int     orden;
+    private int     order;
     @DatabaseField
     private int     sino;
     @DatabaseField
     private int     options;
     @DatabaseField
     private int     media;
+    @DatabaseField
+    private int     comment;
     @DatabaseField
     private int     publicity;
     @DatabaseField
@@ -59,12 +59,12 @@ public class Poll {
         this.question = question;
     }
 
-    public int getOrden() {
-        return orden;
+    public int getOrder() {
+        return order;
     }
 
-    public void setOrden(int orden) {
-        this.orden = orden;
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     public int getSino() {
@@ -89,6 +89,14 @@ public class Poll {
 
     public void setMedia(int media) {
         this.media = media;
+    }
+
+    public int getComment() {
+        return comment;
+    }
+
+    public void setComment(int comment) {
+        this.comment = comment;
     }
 
     public int getPublicity() {

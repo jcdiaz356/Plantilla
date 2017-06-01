@@ -1,13 +1,18 @@
 package com.dataservicios.plantilla;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -37,14 +42,18 @@ import com.dataservicios.plantilla.model.Company;
 import com.dataservicios.plantilla.model.NavDrawerItem;
 import com.dataservicios.plantilla.model.User;
 import com.dataservicios.plantilla.repo.CompanyRepo;
+import com.dataservicios.plantilla.repo.MediaRepo;
 import com.dataservicios.plantilla.repo.UserRepo;
+import com.dataservicios.plantilla.util.BitmapLoader;
 import com.dataservicios.plantilla.util.GPSTracker;
+import com.dataservicios.plantilla.util.GlobalConstant;
 import com.dataservicios.plantilla.util.SessionManager;
 import com.dataservicios.plantilla.util.SyncData;
 import com.dataservicios.plantilla.view.fragment.MediasFragment;
 import com.dataservicios.plantilla.view.fragment.RouteFragment;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -72,6 +81,7 @@ public class PanelAdminActivity extends AppCompatActivity    {
     private UserRepo                    userRepo;
     private User                        user;
     private Fragment                    fragment;
+    private File                        filePath;
 
 
     @Override
@@ -131,8 +141,9 @@ public class PanelAdminActivity extends AppCompatActivity    {
 
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId( 0, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId( 1 , -1)));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId( 2 , -1), true , "0"));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId( 3 , -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId( 2 , -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId( 3 , -1), true , "0"));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId( 4 , -1)));
 
         navMenuIcons.recycle();
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
@@ -158,6 +169,13 @@ public class PanelAdminActivity extends AppCompatActivity    {
             }
 
             public void onDrawerOpened(View drawerView) {
+
+                getSupportActionBar().setTitle(mDrawerTitle);
+                Log.i(LOG_TAG, String.valueOf(navDrawerItems.get(3).getCount() )) ;
+                MediaRepo mediaRepo = new MediaRepo(activity);
+                long Total = mediaRepo.countReg();
+                navDrawerItems.get(3).setCount(String.valueOf(Total));
+                adapter.notifyDataSetChanged();
                 invalidateOptionsMenu();
             }
         };
@@ -274,22 +292,71 @@ public class PanelAdminActivity extends AppCompatActivity    {
     private void displayView(int position) {
         // update the main content by replacing fragments
          fragment = null; //= null;
-        //Fragment fragment = null; //= null;
-       // FragmentManager fragmentManager = getFragmentManager();
+
         switch (position) {
             case 0:
                 fragment = new RouteFragment();
-//                Intent intent = new Intent("com.dataservicios.systemauditor.PUNTOVENTA");
-//                startActivity(intent);
+
                 break;
             case 1:
-                //fragment = new GraficosFragment();
-                //fragment = new PhotosFragment();
+
+                filePath = BitmapLoader.getAlbumDirBackup(activity);
+                try {
+
+                    if (filePath.isDirectory()) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        Uri myUri = Uri.parse(String.valueOf(filePath));
+                        intent.setDataAndType(myUri , "resource/folder");
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(activity,R.string.message_directory_backup_no_found, Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    Toast.makeText(activity,R.string.message_app_no_installing, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("market://details?id=com.estrongs.android.pop&hl=es"));
+                    startActivity(intent);
+                }finally {
+
+                }
+
+
                 break;
             case 2:
+                filePath = BitmapLoader.getAlbumDirTemp(activity);
+                try {
+
+                    if (filePath.isDirectory()) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        Uri myUri = Uri.parse(String.valueOf(filePath));
+                        intent.setDataAndType(myUri , "resource/folder");
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(activity,R.string.message_directory_temp_no_found, Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    Toast.makeText(activity,R.string.message_app_no_installing, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("market://details?id=com.estrongs.android.pop&hl=es"));
+                    startActivity(intent);
+                }finally {
+
+                }
+
+                break;
+
+            case 3:
                 fragment = new MediasFragment();
                 break;
-            case 3:
+            case 4:
                 AsyncTask syncData = new SyncData(activity, user_id, company_id, new SyncData.AsyncResponse() {
                     @Override
                     public void processFinish(Boolean output) {

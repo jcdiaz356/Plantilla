@@ -118,6 +118,38 @@ public class PollRepo implements Crud {
 
     }
 
+    @Override
+    public Object findFirstReg() {
 
+        Object wishList = null;
+        try {
+            wishList = helper.getPollDao().queryBuilder().queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
+
+    @Override
+    public long countReg() {
+        long count = 0;
+        try {
+            count = helper.getPollDao().countOf();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public Object findByCompanyAuditIdAndOrder(int company_audit_id, int order) {
+
+        Poll wishList = null;
+        try {
+            wishList =  helper.getPollDao().queryBuilder().where().eq("company_audit_id",company_audit_id).and().eq("order",order).queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
 
 }

@@ -124,7 +124,28 @@ public class DistrictRepo implements Crud {
         return items;
 
     }
+    @Override
+    public Object findFirstReg() {
 
+        Object wishList = null;
+        try {
+            wishList = helper.getDistrictDao().queryBuilder().queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
+
+    @Override
+    public long countReg() {
+        long count = 0;
+        try {
+            count = helper.getDistrictDao().countOf();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 
     public List<District> findByForDepartamentId(int departament_id) {
 

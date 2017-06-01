@@ -7,8 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="button_style_r">@style/ButtonsAudit</item>
+
     </style>
     <attr name="button_style_r" format="reference" />
+
     <!--<style name="AppTheme.NoActionBar">-->
     <!--<item name="windowActionBar">false</item>-->
     <!--<item name="windowNoTitle">true</item>-->
@@ -29,13 +31,23 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-
     <style name="ButtonsAudit" parent="Widget.AppCompat.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:background">@drawable/button_audit</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
+    </style>
+
+    <style name="SwitchCompatStyle" parent="@android:style/TextAppearance.Holo.Small">
+        <item name="android:thumb">@drawable/custom_swich_selector</item>
+        <item name="android:track">@drawable/custom_swich_track</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/colorWhite</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
     </style>
     <!--<style name="ButtonsAudit" parent="Widget.AppCompat.Button">-->
         <!--<item name="android:gravity">center_vertical|center_horizontal</item>-->

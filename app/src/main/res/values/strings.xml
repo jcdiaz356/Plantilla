@@ -2,9 +2,16 @@
     <string name="app_name">Plantilla</string>
     <string name="title_activity_referencia">ReferenciaActivity</string>
 
+    <!--Galery Imagen Upload-->
+    <string name="descr_image">Image</string>
+    <string name="album_name">ttAuditPlantillaPhoto</string>
+    <string name="album_name_temp">ttAuditPalntillaPhotoTemp</string>
+    <string name="album_name_backup">ttAuditPlantillaPhotoBackup</string>
+
     <string-array name="nav_drawer_items">
         <item>Rutas</item>
         <item>Backup de fotos</item>
+        <item>Fotos truncadas</item>
         <item>Registro de fotos</item>
         <item>Sincronizar datos</item>
     </string-array>
@@ -13,6 +20,7 @@
     <array name="nav_drawer_icons">
         <item>@drawable/ic_menu_route</item>
         <item>@drawable/ic_menu_backup</item>
+        <item>@drawable/ic_menu_gallery</item>
         <item>@drawable/ic_menu_gallery</item>
         <item>@drawable/ic_menu_sync</item>
     </array>
@@ -112,12 +120,20 @@
     <string name="message_update_gps">Actualizar Georeferencia</string>
     <string name="message_update_gps_information">Está seguro de actualizar la georeferencia</string>
     <string name="text_close_store">Cerrar Tienda</string>
-    <string name="text_info_route">Informaón de ruta</string>
+    <string name="text_info_route">Información de ruta</string>
     <string name="text_info_store">Información de tienda</string>
     <string name="text_info_audits">Auditorias</string>
     <string name="text_download_polls">Descargando preguntas</string>
     <string name="text_download_polls_otpions">Descargando opcopnes de pregunta</string>
     <string name="menu_search">Busacar</string>
+    <string name="text_audit">Auditoría</string>
+    <string name="title_activity_upload_photo">Subir foto</string>
+    <string name="message_selection_image">Debe seleccionar una foto</string>
+    <string name="message_image_no_found">No se econtró ninguna  foto</string>
+    <string name="message_app_no_installing">No se encuentra instalada la aplicación</string>
+    <string name="message_directory_temp_no_found">El directorio no existe, no hay imagenes temporales</string>
+    <string name="message_directory_backup_no_found">El directoria de Backup no existe</string>
+    <string name="text_comment">Comentario:</string>
 
 
 </resources>

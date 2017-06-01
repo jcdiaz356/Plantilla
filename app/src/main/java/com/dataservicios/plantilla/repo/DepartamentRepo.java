@@ -122,7 +122,27 @@ public class DepartamentRepo implements Crud {
         return items;
 
     }
+    @Override
+    public Object findFirstReg() {
 
+        Object wishList = null;
+        try {
+            wishList = helper.getDepartamentDao().queryBuilder().queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
+    @Override
+    public long countReg() {
+        long count = 0;
+        try {
+            count = helper.getDepartamentDao().countOf();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 
 
 }

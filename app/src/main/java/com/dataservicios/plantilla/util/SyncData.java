@@ -90,13 +90,13 @@ public class SyncData extends AsyncTask<Void, String, Boolean> {
             Log.d(LOG_TAG,r.toString());
         }
         publishProgress(context.getString(R.string.text_download_store));
-        for(Route r: routes){
-            stores = AuditUtil.getListStores(r.getId(),company_id);
+        //for(Route r: routes){
+            stores = AuditUtil.getListStores(user_id,company_id);
             for (Store s: stores) {
                 storeRepo.create(s);
                 Log.d(LOG_TAG,s.toString());
             }
-        }
+        //}
         publishProgress(context.getString(R.string.text_download_audits));
         auditRoadStores = AuditUtil.getAuditRoadStores(company_id,user_id);
         AuditRepo auditRepo = new AuditRepo(context);

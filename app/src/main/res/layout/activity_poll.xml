@@ -21,161 +21,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="@dimen/activity_vertical_margin">
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padding_text">
-
-                <LinearLayout
-                    style="@style/Widget.CardContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_info_route"
-                        android:textAllCaps="true"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:textColor="@color/colorPrimaryDark" />
-
-                    <TextView
-                        android:id="@+id/tvRouteFullName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nombre Ruta" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/text_id_route"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvRouteId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="455668" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/padding_text">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        style="@style/Widget.CardContent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/text_info_store"
-                            android:textAllCaps="true"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:textColor="@color/colorPrimaryDark" />
-
-                        <TextView
-                            android:id="@+id/tvStoreFullName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Nombre Tienda" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/text_id_store"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvStoreId"
-                                android:paddingLeft="@dimen/padding_text"
-                                android:paddingRight="@dimen/padding_text"
-                                android:background="@color/colorRed"
-                                android:textColor="@color/colorWhite"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/text_address"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvAddress"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/text_reference"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvReferencia"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/text_district"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvDistrict"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
+                <include layout="@layout/content_store" />
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -194,25 +44,136 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/activity_vertical_margin"
                         android:paddingRight="@dimen/activity_vertical_margin"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
                         android:paddingTop="@dimen/activity_vertical_margin">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/text_info_audits"
+                            android:text="@string/text_audit"
                             android:textAllCaps="true"
                             android:textAppearance="@style/TextAppearance.AppCompat.Title"
                             android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/tvAuditoria"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="Auditoria"
+                            />
+                        <TextView
+                            android:id="@+id/tvPoll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="@dimen/activity_vertical_margin"
+                            android:paddingBottom="@dimen/activity_vertical_margin"
+                            android:layout_gravity="center"
+                            android:text="" />
+                        <!--<android.support.v7.widget.SwitchCompat-->
+                            <!--android:id="@+id/switch1"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:paddingTop="@dimen/activity_vertical_margin"-->
+                            <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:textOn="@string/sw_si"-->
+                            <!--android:textOff="@string/sw_no"-->
+                            <!--android:showText="true"-->
+                            <!--android:textColor="@color/colorWhite"-->
+                            <!--android:thumb="@drawable/custom_swich_selector"-->
+                            <!--android:track="@drawable/custom_swich_track"-->
+                            <!--/>-->
+
+                        <!--<android.support.v7.widget.SwitchCompat-->
+                            <!--android:id="@+id/switch1"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:paddingTop="@dimen/activity_vertical_margin"-->
+                            <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:text="Switch with status text"-->
+                            <!--android:textOn="@string/sw_si"-->
+                            <!--android:textOff="@string/sw_no"-->
+                            <!--android:showText="true"-->
+
+                            <!--/>-->
+
+                        <!--<Switch-->
+                            <!--android:id="@+id/switch2"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:paddingTop="@dimen/activity_vertical_margin"-->
+                            <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:text="Switch with status text"-->
+                            <!--android:textOn="@string/sw_si"-->
+                            <!--android:textOff="@string/sw_no"-->
+                            <!--android:showText="true"-->
+                            <!--style="@style/SwitchCompatStyle"-->
+                            <!--/>-->
+
+                        <Switch
+                            android:id="@+id/swYesNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="@dimen/activity_vertical_margin"
+                            android:paddingBottom="@dimen/activity_vertical_margin"
+                            android:layout_gravity="center"
+                            android:textOn="@string/sw_si"
+                            android:textOff="@string/sw_no"
+                            android:showText="true"
+                            android:textColor="@color/colorWhite"
+                            style="@style/SwitchCompatStyle"
+                            />
+
+
+                        <ImageButton
+                            android:id="@+id/btPhoto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_menu_camera"
+                            android:paddingTop="@dimen/activity_vertical_margin"
+                            android:paddingBottom="@dimen/activity_vertical_margin"
+                            android:layout_gravity="center"
+                            style="?android:attr/borderlessButtonStyle"/>
+
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/lyContentButtons"
-                        style="@style/Widget.CardContent"
+                        android:id="@+id/lyOptions"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/activity_vertical_margin"
+                        android:paddingRight="@dimen/activity_vertical_margin"
+                    >
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lyComment"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/activity_vertical_margin"
+                        android:paddingRight="@dimen/activity_vertical_margin"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:textStyle="bold"
+                            android:text="@string/text_comment"
+                            />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
+                            android:id="@+id/etComent" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
 
@@ -235,11 +196,11 @@
                         android:layout_height="wrap_content">
 
                         <Button
-                            android:id="@+id/button2"
+                            android:id="@+id/btSave"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_action_exit"
-                            android:text="@string/text_close_store"
+                            android:drawableLeft="@drawable/ic_save"
+                            android:text="@string/save"
                             android:theme="@style/ButtonCloseAudit" />
                     </LinearLayout>
                 </LinearLayout>

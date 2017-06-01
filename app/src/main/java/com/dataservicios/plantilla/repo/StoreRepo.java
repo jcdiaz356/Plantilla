@@ -118,6 +118,34 @@ public class StoreRepo implements Crud {
 
     }
 
+    @Override
+    public Object findFirstReg() {
+
+        Object wishList = null;
+        try {
+            wishList = helper.getStoreDao().queryBuilder().queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
+
+    @Override
+    public long countReg() {
+        long count = 0;
+        try {
+            count = helper.getStoreDao().countOf();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    /**
+     * Busca una lista de Stores por su Route
+     * @param route_id
+     * @return Retorna lista de stores
+     */
     public List<Store> findByRouteId(int route_id) {
 
         List<Store> wishList = null;

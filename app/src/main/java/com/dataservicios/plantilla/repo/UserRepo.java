@@ -114,6 +114,27 @@ public class UserRepo implements Crud {
 
     }
 
+    @Override
+    public Object findFirstReg() {
 
+        Object wishList = null;
+        try {
+            wishList = helper.getUserDao().queryBuilder().queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
+
+    @Override
+    public long countReg() {
+        long count = 0;
+        try {
+            count = helper.getUserDao().countOf();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 
 }

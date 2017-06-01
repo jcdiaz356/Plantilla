@@ -79,12 +79,22 @@
         </activity>
         <activity
             android:name=".view.StoreAuditActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.StoresActivity" />
         </activity>
-
+        <activity
+            android:name=".view.PollActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.StoreAuditActivity" />
+        </activity>
+        <activity
+            android:name=".AndroidCustomGalleryActivity"
+            android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -97,7 +107,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".view.PollActivity"></activity>
+        <service
+            android:name=".services.UpdateService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

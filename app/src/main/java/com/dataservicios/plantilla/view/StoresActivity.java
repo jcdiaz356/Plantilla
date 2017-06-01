@@ -12,8 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,6 +75,7 @@ public class StoresActivity extends AppCompatActivity {
 
 
 
+
         routeRepo = new RouteRepo(activity);
         route = (Route) routeRepo.findById(route_id);
         if (route != null) {
@@ -89,10 +91,7 @@ public class StoresActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         storeRecycler.setLayoutManager(linearLayoutManager);
 
-
        // new loadStores().execute();
-
-
 
         storeRepo = new StoreRepo(activity);
         stores = (ArrayList<Store>) storeRepo.findByRouteId(route_id);
@@ -100,14 +99,11 @@ public class StoresActivity extends AppCompatActivity {
         storeAdapterRecyclerView =  new StoreAdapterReciclerView(stores, R.layout.cardview_store, activity);
         storeRecycler.setAdapter(storeAdapterRecyclerView);
 
-
-
         FabSpeedDial fabMenuMaps = (FabSpeedDial) findViewById(R.id.fabMenuMaps);
         fabMenuMaps.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onPrepareMenu(NavigationMenu navigationMenu) {
                 // TODO: Do something with yout menu items, or return false if you don't want to show them
-
                 return true;
             }
         });
@@ -124,10 +120,10 @@ public class StoresActivity extends AppCompatActivity {
                        // Toast.makeText(activity, menuItem.getTitle().toString() , Toast.LENGTH_SHORT).show();
                         //                int route_id = store.getId();
                         //Toast.makeText(activity, String.valueOf(route_id), Toast.LENGTH_SHORT).show();
-                        Bundle bolsa = new Bundle();
-                        bolsa.putInt("route_id", Integer.valueOf(route_id));
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("route_id", Integer.valueOf(route_id));
                         Intent intent = new Intent(activity,MapsRouteActivity.class);
-                        intent.putExtras(bolsa);
+                        intent.putExtras(bundle);
                         activity.startActivity(intent);
                         break;
                     case R.id.action_location_all:

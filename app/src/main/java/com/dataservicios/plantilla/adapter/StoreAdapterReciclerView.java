@@ -16,10 +16,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dataservicios.plantilla.R;
+import com.dataservicios.plantilla.db.DatabaseManager;
+import com.dataservicios.plantilla.model.Company;
+import com.dataservicios.plantilla.model.RouteStoreTime;
 import com.dataservicios.plantilla.model.Store;
+import com.dataservicios.plantilla.model.User;
+import com.dataservicios.plantilla.repo.CompanyRepo;
+import com.dataservicios.plantilla.repo.RouteStoreTimeRepo;
+import com.dataservicios.plantilla.repo.UserRepo;
+import com.dataservicios.plantilla.util.GPSTracker;
 import com.dataservicios.plantilla.view.StoreAuditActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,11 +42,28 @@ public class StoreAdapterReciclerView extends RecyclerView.Adapter<StoreAdapterR
     private int                 resource;
     private Activity            activity;
     private Filter              fRecords;
+    private GPSTracker          gpsTracker;
+    private User                user;
+    private Company             company;
+
 
     public StoreAdapterReciclerView(ArrayList<Store> stores, int resource, Activity activity) {
         this.stores     = stores;
         this.resource   = resource;
         this.activity   = activity;
+
+        gpsTracker = new GPSTracker(activity);
+        if(!gpsTracker.canGetLocation()){
+            gpsTracker.showSettingsAlert();
+        }
+
+        DatabaseManager.init(activity);
+        UserRepo    userRepo    = new UserRepo(activity);
+        CompanyRepo company_repo= new CompanyRepo(activity);
+
+        user    = (User)    userRepo.findFirstReg();
+        company = (Company) company_repo.findFirstReg();
+
     }
 
     @Override
@@ -49,6 +76,7 @@ public class StoreAdapterReciclerView extends RecyclerView.Adapter<StoreAdapterR
                 //Toast.makeText(activity,"dfgdfg",Toast.LENGTH_SHORT).show();
             }
         });
+
         return new StoreAdapterReciclerView.StoreViewHolder(view);
     }
 
@@ -69,7 +97,6 @@ public class StoreAdapterReciclerView extends RecyclerView.Adapter<StoreAdapterR
             holder.imgStatus.setVisibility(View.INVISIBLE);
         }
 
-
         holder.btShared.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,12 +116,34 @@ public class StoreAdapterReciclerView extends RecyclerView.Adapter<StoreAdapterR
             @Override
             public void onClick(View v) {
 
+                double lat = gpsTracker.getLatitude();
+                double lon = gpsTracker.getLatitude();
+
+                if(gpsTracker.canGetLocation()){
+                    lat = gpsTracker.getLatitude();
+                    lon = gpsTracker.getLatitude();
+                }
+
+                String created_at = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss").format(new Date());
+                RouteStoreTime routeStoreTime = new RouteStoreTime();
+                routeStoreTime.setCompany_id(company.getId());
+                routeStoreTime.setStore_id(store.getId());
+                routeStoreTime.setRoute_id(store.getRoute_id());
+                routeStoreTime.setUser_id(user.getId());
+                routeStoreTime.setLat_open(lat);
+                routeStoreTime.setLon_open(lon);
+                routeStoreTime.setTime_open(created_at);
+
+                RouteStoreTimeRepo routeStoreTimeRepo = new RouteStoreTimeRepo(activity);
+                routeStoreTimeRepo.deleteAll();
+                routeStoreTimeRepo.create(routeStoreTime);
+
                 int store_id = store.getId();
 //              Toast.makeText(activity, String.valueOf(store.id), Toast.LENGTH_SHORT).show();
-                Bundle bolsa = new Bundle();
-                bolsa.putInt("store_id", Integer.valueOf(store_id));
+                Bundle bundle = new Bundle();
+                bundle.putInt("store_id", Integer.valueOf(store_id));
                 Intent intent = new Intent(activity,StoreAuditActivity.class);
-                intent.putExtras(bolsa);
+                intent.putExtras(bundle);
                 activity.startActivity(intent);
 
             }

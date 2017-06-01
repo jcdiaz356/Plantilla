@@ -5,7 +5,7 @@ import android.content.Context;
 import com.dataservicios.plantilla.db.DatabaseHelper;
 import com.dataservicios.plantilla.db.DatabaseManager;
 import com.dataservicios.plantilla.model.AuditRoadStore;
-import com.dataservicios.plantilla.model.Store;
+
 
 
 import java.sql.SQLException;
@@ -119,7 +119,33 @@ public class AuditRoadStoreRepo implements Crud {
         return items;
 
     }
+    @Override
+    public Object findFirstReg() {
 
+        Object wishList = null;
+        try {
+            wishList = helper.getAuditRoadStoreDao().queryBuilder().queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
+    @Override
+    public long countReg() {
+        long count = 0;
+        try {
+            count = helper.getAuditRoadStoreDao().countOf();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    /**
+     * Obtiene un List de AuditRoadStore por store_id
+     * @param store_id
+     * @return
+     */
     public List<AuditRoadStore> findByStoreId(int store_id) {
 
         List<AuditRoadStore> wishList = null;
@@ -131,4 +157,21 @@ public class AuditRoadStoreRepo implements Crud {
         return wishList;
     }
 
+
+    /**
+     * Obtiene un List de AuditRoadStore por store_id y audit_id
+     * @param store_id
+     * @param audit_id
+     * @return
+     */
+    public Object findByStoreIdAndAuditId(int store_id,int audit_id) {
+
+        AuditRoadStore wishList = null;
+        try {
+            wishList =  helper.getAuditRoadStoreDao().queryBuilder().where().eq("store_id",store_id).and().eq("audit_id",audit_id).queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
 }

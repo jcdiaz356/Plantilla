@@ -12,9 +12,11 @@ import com.dataservicios.plantilla.model.AuditRoadStore;
 import com.dataservicios.plantilla.model.Company;
 import com.dataservicios.plantilla.model.Departament;
 import com.dataservicios.plantilla.model.District;
+import com.dataservicios.plantilla.model.Media;
 import com.dataservicios.plantilla.model.Poll;
 import com.dataservicios.plantilla.model.PollOption;
 import com.dataservicios.plantilla.model.Route;
+import com.dataservicios.plantilla.model.RouteStoreTime;
 import com.dataservicios.plantilla.model.Store;
 import com.dataservicios.plantilla.model.User;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
@@ -35,20 +37,22 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	// name of the database file for your application -- change to something appropriate for your app
 	private static final String DATABASE_NAME = "db_prueba";
 	// any time you make changes to your database objects, you may have to increase the database version
-	private static final int DATABASE_VERSION = 18;
+	private static final int DATABASE_VERSION = 22;
     private Context myContext;
 	// the DAO object we use to access the SimpleData table
     //pressure
-	private Dao<User, Integer> UserDao = null;
-	private Dao<Departament, Integer> DepartamentDao = null;
-	private Dao<District, Integer> DistrictDao = null;
-	private Dao<Route, Integer> RouteDao = null;
-	private Dao<Company, Integer> CompanyDao = null;
-	private Dao<Store, Integer> StoreDao = null;
-	private Dao<Audit, Integer> AuditDao = null;
-	private Dao<AuditRoadStore, Integer> AuditRoadStoreDao = null;
-	private Dao<Poll, Integer> PollDao = null;
-	private Dao<PollOption, Integer> PollOptionDao = null;
+	private Dao<User, Integer>              UserDao             = null;
+	private Dao<Departament, Integer>       DepartamentDao      = null;
+	private Dao<District, Integer>          DistrictDao         = null;
+	private Dao<Route, Integer>             RouteDao            = null;
+	private Dao<Company, Integer>           CompanyDao          = null;
+	private Dao<Store, Integer>             StoreDao            = null;
+	private Dao<Audit, Integer>             AuditDao            = null;
+	private Dao<AuditRoadStore,Integer>     AuditRoadStoreDao   = null;
+	private Dao<Poll, Integer>              PollDao             = null;
+	private Dao<PollOption, Integer>        PollOptionDao       = null;
+	private Dao<Media, Integer>             MediaDao            = null;
+	private Dao<RouteStoreTime, Integer>    RouteStoreTimeDao   = null;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -59,21 +63,21 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	public void onCreate(SQLiteDatabase db,ConnectionSource connectionSource) {
 		try {
 			
-			TableUtils.createTable(connectionSource, User.class);
-			TableUtils.createTable(connectionSource, Departament.class);
-			TableUtils.createTable(connectionSource, District.class);
-			TableUtils.createTable(connectionSource, Route.class);
-			TableUtils.createTable(connectionSource, Company.class);
-			TableUtils.createTable(connectionSource, Store.class);
-			TableUtils.createTable(connectionSource, Audit.class);
-			TableUtils.createTable(connectionSource, AuditRoadStore.class);
-			TableUtils.createTable(connectionSource, Poll.class);
-			TableUtils.createTable(connectionSource, PollOption.class);
+			TableUtils.createTable(connectionSource, User.class             );
+			TableUtils.createTable(connectionSource, Departament.class      );
+			TableUtils.createTable(connectionSource, District.class         );
+			TableUtils.createTable(connectionSource, Route.class            );
+			TableUtils.createTable(connectionSource, Company.class          );
+			TableUtils.createTable(connectionSource, Store.class            );
+			TableUtils.createTable(connectionSource, Audit.class            );
+			TableUtils.createTable(connectionSource, AuditRoadStore.class   );
+			TableUtils.createTable(connectionSource, Poll.class             );
+			TableUtils.createTable(connectionSource, PollOption.class       );
+			TableUtils.createTable(connectionSource, Media.class            );
+			TableUtils.createTable(connectionSource, RouteStoreTime.class   );
 
             Log.i(LOG_TAG, "execute method onCreate: Can't create Tables");
-
             preloadData(db,myContext);
-
 
 		} catch (SQLException e) {
 			Log.e(LOG_TAG, "Can't create database", e);
@@ -100,16 +104,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 				db.execSQL(sql);
 			}
 
-            TableUtils.dropTable(connectionSource,User.class,true);
-            TableUtils.dropTable(connectionSource, Departament.class,true);
-            TableUtils.dropTable(connectionSource, District.class,true);
-            TableUtils.dropTable(connectionSource, Route.class,true);
-            TableUtils.dropTable(connectionSource, Company.class,true);
-            TableUtils.dropTable(connectionSource, Store.class,true);
-            TableUtils.dropTable(connectionSource, Audit.class,true);
+            TableUtils.dropTable(connectionSource,User.class,true           );
+            TableUtils.dropTable(connectionSource, Departament.class,true   );
+            TableUtils.dropTable(connectionSource, District.class,true      );
+            TableUtils.dropTable(connectionSource, Route.class,true         );
+            TableUtils.dropTable(connectionSource, Company.class,true       );
+            TableUtils.dropTable(connectionSource, Store.class,true         );
+            TableUtils.dropTable(connectionSource, Audit.class,true         );
             TableUtils.dropTable(connectionSource, AuditRoadStore.class,true);
-            TableUtils.dropTable(connectionSource, Poll.class,true);
-            TableUtils.dropTable(connectionSource, PollOption.class,true);
+            TableUtils.dropTable(connectionSource, Poll.class,true          );
+            TableUtils.dropTable(connectionSource, PollOption.class,true    );
+            TableUtils.dropTable(connectionSource, Media.class,true         );
+            TableUtils.dropTable(connectionSource, RouteStoreTime.class,true);
             onCreate(db,connectionSource);
 
             Log.i(LOG_TAG, "execute method onUpgrade: drop Tables");
@@ -232,6 +238,26 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
         return PollOptionDao;
     }
+    public Dao<Media, Integer> getMediaDao() {
+            if (null == MediaDao) {
+                try {
+                    MediaDao = getDao(Media.class);
+                }catch (java.sql.SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            return MediaDao;
+    }
+    public Dao<RouteStoreTime, Integer> getRouteStoreTimeDao() {
+                if (null == RouteStoreTimeDao) {
+                    try {
+                        RouteStoreTimeDao = getDao(RouteStoreTime.class);
+                    }catch (java.sql.SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                return RouteStoreTimeDao;
+        }
 
     private void preloadData(SQLiteDatabase db, Context context) {
 

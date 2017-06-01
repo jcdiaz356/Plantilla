@@ -117,6 +117,30 @@ public class PollOptionRepo implements Crud  {
 
     }
 
+    @Override
+    public Object findFirstReg() {
+
+        Object wishList = null;
+        try {
+            wishList = helper.getPollOptionDao().queryBuilder().queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
+
+    @Override
+    public long countReg() {
+        long count = 0;
+        try {
+            count = helper.getPollOptionDao().countOf();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+
 
     public List<PollOption> findByPollId(int poll_id) {
 

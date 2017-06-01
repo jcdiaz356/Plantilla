@@ -114,4 +114,26 @@ public class AuditRepo implements Crud {
         return items;
 
     }
+    @Override
+    public Object findFirstReg() {
+
+        Object wishList = null;
+        try {
+            wishList = helper.getAuditDao().queryBuilder().queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wishList;
+    }
+    @Override
+    public long countReg() {
+        long count = 0;
+        try {
+            count = helper.getAuditDao().countOf();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
 }

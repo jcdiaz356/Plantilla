@@ -104,10 +104,10 @@ public class RouteAdapterRecyclerView extends RecyclerView.Adapter<RouteAdapterR
 
                 route_id = route.getId();
                 //Toast toast= Toast.makeText(getActivity(), selected, Toast.LENGTH_SHORT).show();
-//                Bundle bolsa = new Bundle();
-//                bolsa.putInt("route_id", Integer.valueOf(route_id));
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("route_id", Integer.valueOf(route_id));
 //                Intent intent = new Intent(activity,StoresActivity.class);
-//                intent.putExtras(bolsa);
+//                intent.putExtras(bundle);
 //                activity.startActivity(intent);
 
 
@@ -119,10 +119,10 @@ public class RouteAdapterRecyclerView extends RecyclerView.Adapter<RouteAdapterR
 //                    storeRepo.create(s);
 //                }
 
-                Bundle bolsa = new Bundle();
-                bolsa.putInt("route_id", Integer.valueOf(route_id));
+                Bundle bundle = new Bundle();
+                bundle.putInt("route_id", Integer.valueOf(route_id));
                 Intent intent = new Intent(activity,StoresActivity.class);
-                intent.putExtras(bolsa);
+                intent.putExtras(bundle);
                 activity.startActivity(intent);
 
                // new loadStores().execute(route_id);
@@ -207,10 +207,10 @@ public class RouteAdapterRecyclerView extends RecyclerView.Adapter<RouteAdapterR
 //                    storeRepo.create(s);
 //                }
 //
-//                Bundle bolsa = new Bundle();
-//                bolsa.putInt("route_id", Integer.valueOf(route_id));
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("route_id", Integer.valueOf(route_id));
 //                Intent intent = new Intent(activity,StoresActivity.class);
-//                intent.putExtras(bolsa);
+//                intent.putExtras(bundle);
 //                activity.startActivity(intent);
 //
 //

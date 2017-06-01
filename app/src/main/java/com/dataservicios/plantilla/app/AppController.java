@@ -2,8 +2,11 @@ package com.dataservicios.plantilla.app;
 
 
 import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 
+import com.dataservicios.plantilla.db.DatabaseManager;
+import com.dataservicios.plantilla.services.UpdateService;
 
 
 public class AppController extends Application {
@@ -17,9 +20,9 @@ public class AppController extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-
+		DatabaseManager.init(this);
 		Log.d(TAG, "onCreated");
-//		startService(new Intent(this, UpdateServices.class));
+		startService(new Intent(this, UpdateService.class));
 //		startService(new Intent(this, MonitoGPSServices.class));
 		mInstance = this;
 	}
@@ -38,7 +41,7 @@ public class AppController extends Application {
 	public void onTerminate() {
 		super.onTerminate();
 		Log.i(TAG, "onTerminated");
-//		stopService(new Intent(this, UpdateServices.class));
+		stopService(new Intent(this, UpdateService.class));
 //		stopService(new Intent(this, MonitoGPSServices.class));
 	}
 }

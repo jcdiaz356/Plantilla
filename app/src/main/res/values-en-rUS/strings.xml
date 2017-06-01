@@ -85,5 +85,13 @@
     <string name="text_download_polls">Descargando preguntas</string>
     <string name="text_download_polls_otpions">Descargando opcopnes de pregunta</string>
     <string name="menu_search">Busacar</string>
+    <string name="text_audit">Auditoría</string>
+    <string name="title_activity_upload_photo">Subir foto</string>
+    <string name="message_selection_image">Debe seleccionar una foto</string>
+    <string name="message_image_no_found">No se econtró ninguna  foto</string>
+    <string name="message_app_no_installing">No se encuentra instalada la aplicación</string>
+    <string name="message_directory_temp_no_found">El directorio no existe, no hay imagenes temporales</string>
+    <string name="message_directory_backup_no_found">El directoria de Backup no existe</string>
+    <string name="text_comment">Comentario:</string>
 
 </resources>
